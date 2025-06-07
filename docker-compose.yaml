@@ -27,6 +27,13 @@ services:
       - |
         echo "🚀 Iniciando aplicação..."
         composer install --no-dev --optimize-autoloader
+        echo "🔑 Verificando chave de criptografia..."
+        if ! grep -q "^APP_KEY=base64:" .env; then
+          echo "🔧 Gerando nova chave de criptografia..."
+          php artisan key:generate --force
+        else
+          echo "✅ Chave de criptografia já existe"
+        fi
         echo "⏳ Aguardando banco de dados..."
         sleep 10
         echo "🏗️ Executando migrações..."
