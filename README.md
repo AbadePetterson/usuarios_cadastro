@@ -1,3 +1,5 @@
+![image](https://github.com/user-attachments/assets/f0f60707-5780-4591-842c-b11d92b001f8)
+
 # 🚀 Sistema de Cadastro de Usuários
 
 Um sistema completo de gerenciamento de usuários desenvolvido em Laravel com interface moderna e responsiva.
