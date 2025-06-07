@@ -1,0 +1,67 @@
+version: "3.8"
+
+networks:
+  application:
+    driver: bridge
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: usuarios_cadastro_app
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/app
+      - /app/vendor
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - application
+    env_file:
+      - .env
+    entrypoint: ['/bin/sh', '-c']
+    command:
+      - |
+        echo "🚀 Iniciando aplicação..."
+        composer install --no-dev --optimize-autoloader
+        echo "⏳ Aguardando banco de dados..."
+        sleep 10
+        echo "🏗️ Executando migrações..."
+        php artisan migrate --force
+        echo "👤 Criando usuários padrão..."
+        php artisan db:seed --force
+        echo "🧹 Limpando cache..."
+        php artisan cache:clear
+        php artisan config:clear
+        echo "✅ Aplicação pronta!"
+        php artisan serve --host=0.0.0.0 --port=8000
+    restart: unless-stopped
+
+  db:
+    image: mysql:8.0
+    container_name: usuarios_cadastro_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - application
+    environment:
+      - MYSQL_DATABASE=usuarios_cadastro
+      - MYSQL_USER=laravel_user
+      - MYSQL_PASSWORD=laravel_password
+      - MYSQL_ROOT_PASSWORD=root
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+    driver: local
