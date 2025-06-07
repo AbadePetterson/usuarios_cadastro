@@ -1,61 +1,310 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🚀 Sistema de Cadastro de Usuários
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Um sistema completo de gerenciamento de usuários desenvolvido em Laravel com interface moderna e responsiva.
 
-## About Laravel
+## 📋 Índice
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [Sobre o Projeto](#sobre-o-projeto)
+- [Funcionalidades](#funcionalidades)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Pré-requisitos](#pré-requisitos)
+- [Instalação com Docker](#instalação-com-docker)
+- [Comandos Docker Úteis](#comandos-docker-úteis)
+- [Instalação Local (Alternativa)](#instalação-local-alternativa)
+- [Como Usar](#como-usar)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Troubleshooting](#troubleshooting)
+- [Contribuição](#contribuição)
+- [Licença](#licença)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📖 Sobre o Projeto
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Este é um sistema web para cadastro e gerenciamento de usuários com diferentes níveis de acesso (Admin e Usuário comum). O projeto foi desenvolvido com foco na segurança, usabilidade e design moderno.
 
-## Learning Laravel
+### 🎯 Principais Características
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Interface Moderna**: Design responsivo com gradientes e animações suaves
+- **Segurança Robusta**: Controle de acesso baseado em roles (Admin/User)
+- **Validação Completa**: Validação de CPF, email e outros campos
+- **Dashboard Interativo**: Painéis diferentes para admin e usuários comuns
+- **Máscaras de Input**: Formatação automática para CPF e telefone
+- **Containerização**: Execução simplificada com Docker
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## ✨ Funcionalidades
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 👤 Para Usuários Comuns
+- ✅ Visualizar e editar próprio perfil
+- ✅ Dashboard personalizado com estatísticas pessoais
+- ✅ Visualização de dados formatados (CPF, telefone)
+- ✅ Impressão de dados pessoais
 
-## Laravel Sponsors
+### 👨‍💼 Para Administradores
+- ✅ Gerenciar todos os usuários do sistema
+- ✅ Criar, editar e excluir usuários
+- ✅ Dashboard administrativo com estatísticas do sistema
+- ✅ Visualizar atividade recente
+- ✅ Ações rápidas para gerenciamento
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 🔒 Segurança
+- ✅ Autenticação obrigatória
+- ✅ Usuários admin protegidos contra exclusão
+- ✅ Controle de permissões por role
+- ✅ Validação de CPF com algoritmo oficial
+- ✅ Proteção contra acesso não autorizado
 
-### Premium Partners
+## 📋 Pré-requisitos
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+- Docker instalado
+- Docker Compose instalado
+- Porta 8000 disponível (aplicação)
+- Porta 3306 disponível (MySQL)
 
-## Contributing
+## 🐳 Instalação com Docker
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 1. Clone o repositório
+```bash
+git clone https://github.com/AbadePetterson/usuarios_cadastro.git
+cd usuarios_cadastro
+```
 
-## Code of Conduct
+### 2. Configure o ambiente
+```bash
+# Copie o arquivo de exemplo
+cp .env.example .env
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 3. Execute com Docker
+```bash
+# Construa e execute os containers
+docker-compose up --build
 
-## Security Vulnerabilities
+# Ou execute em background
+docker-compose up -d --build
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 4. Acesse a aplicação
+- **URL**: http://localhost:8000
+- **Admin**: admin@sistema.com
+- **Senha**: admin123
 
-## License
+## 🔧 Comandos Docker Úteis
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Gerenciamento dos Containers
+```bash
+# Parar os containers
+docker-compose down
+
+# Ver status dos containers
+docker-compose ps
+
+# Ver logs da aplicação
+docker-compose logs app
+
+# Ver logs do banco
+docker-compose logs db
+
+# Acompanhar logs em tempo real
+docker-compose logs -f
+```
+
+### Executar Comandos Laravel
+```bash
+# Entrar no container da aplicação
+docker-compose exec app bash
+
+# Executar migrations
+docker-compose exec app php artisan migrate
+
+# Executar seeders
+docker-compose exec app php artisan db:seed
+
+# Limpar cache
+docker-compose exec app php artisan cache:clear
+
+# Ver rotas
+docker-compose exec app php artisan route:list
+```
+
+### Backup e Restauração
+```bash
+# Criar backup do banco
+docker-compose exec db mysqldump -u root -proot usuarios_cadastro > backup.sql
+
+# Restaurar backup
+docker-compose exec -T db mysql -u root -proot usuarios_cadastro < backup.sql
+```
+
+### Resetar Banco de Dados
+```bash
+# Parar containers
+docker-compose down
+
+# Remover volume do banco (CUIDADO: apaga todos os dados!)
+docker volume rm usuarios_cadastro_mysql_data
+
+# Subir novamente
+docker-compose up --build
+```
+
+## 📊 Estrutura dos Containers
+
+### Container da Aplicação (`usuarios_cadastro_app`)
+- **Imagem**: PHP 8.3 customizada
+- **Porta**: 8000
+- **Funcionalidades**:
+  - Instala dependências automaticamente
+  - Executa migrations
+  - Cria usuários padrão
+  - Serve a aplicação
+
+### Container do Banco (`usuarios_cadastro_db`)
+- **Imagem**: MySQL 8.0
+- **Porta**: 3306
+- **Configurações**:
+  - Database: `usuarios_cadastro`
+  - Usuário: `laravel_user`
+  - Senha: `laravel_password`
+  - Root password: `root`
+
+## 💻 Instalação Local (Alternativa)
+
+Caso prefira não usar Docker:
+
+```bash
+# 1. Clone o repositório
+git clone https://github.com/AbadePetterson/usuarios_cadastro.git
+cd usuarios_cadastro
+
+# 2. Instale as dependências
+composer install
+
+# 3. Configure o ambiente
+cp .env.example .env
+php artisan key:generate
+
+# 4. Configure o banco de dados no .env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=usuarios_cadastro
+DB_USERNAME=seu_usuario
+DB_PASSWORD=sua_senha
+
+# 5. Execute as migrações e seeders
+php artisan migrate
+php artisan db:seed
+
+# 6. Inicie o servidor
+php artisan serve
+```
+
+**Pré-requisitos para instalação local:**
+- PHP 8.2+
+- Composer
+- MySQL 8.0+
+- Node.js (opcional)
+
+## 🏗️ Estrutura do Projeto
+
+```
+usuarios_cadastro/
+├── app/
+│   ├── Http/Controllers/     # Controladores
+│   ├── Models/              # Modelos Eloquent
+│   └── ...
+├── database/
+│   ├── migrations/          # Migrações do banco
+│   └── seeders/            # Dados iniciais
+├── resources/
+│   └── views/              # Templates Blade
+├── routes/
+│   └── web.php             # Rotas da aplicação
+├── docker-compose.yaml     # Configuração Docker
+├── Dockerfile             # Imagem Docker
+└── README.md              # Este arquivo
+```
+
+## 🔒 Segurança
+
+- ✅ Senhas criptografadas com Hash
+- ✅ Validação de CPF com algoritmo oficial
+- ✅ Proteção contra SQL Injection
+- ✅ Middleware de autenticação
+- ✅ Controle de permissões por nível de usuário
+- ✅ Validação server-side em todos os formulários
+
+## 🐛 Troubleshooting
+
+### Problemas com Docker
+
+1. **Porta já em uso**
+```bash
+# Verificar o que está usando a porta
+sudo lsof -i :8000
+sudo lsof -i :3306
+
+# Parar o processo ou alterar a porta no docker-compose.yaml
+```
+
+2. **Erro de conexão com banco**
+```bash
+# Verificar se o container do banco está rodando
+docker-compose ps
+
+# Ver logs do banco
+docker-compose logs db
+
+# Aguardar o healthcheck
+docker-compose exec db mysqladmin ping -h localhost -u root -proot
+```
+
+3. **Erro de permissões**
+```bash
+# Dar permissões para o diretório storage
+sudo chmod -R 775 storage/
+sudo chmod -R 775 bootstrap/cache/
+```
+
+4. **Composer install falha**
+```bash
+# Limpar cache do composer
+docker-compose exec app composer clear-cache
+
+# Reinstalar dependências
+docker-compose exec app composer install --no-cache
+```
+
+### Problemas Gerais
+
+1. **Erro de chave da aplicação**
+   ```bash
+   docker-compose exec app php artisan key:generate
+   ```
+
+2. **Cache corrompido**
+   ```bash
+   docker-compose exec app php artisan cache:clear
+   docker-compose exec app php artisan config:clear
+   ```
+
+### Atualizações
+
+```bash
+# Parar containers
+docker-compose down
+
+# Atualizar código (git pull, etc.)
+
+# Reconstruir e subir
+docker-compose up --build
+```
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+⭐ **Se este projeto foi útil para você, considere dar uma estrela!**
+
+Desenvolvido com ❤️ usando Laravel e Docker
